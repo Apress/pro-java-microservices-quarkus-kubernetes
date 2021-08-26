@@ -1,0 +1,99 @@
+{
+  "realm": "quarkushop-realm",
+  "users": [
+    {
+      "id": "29852215-2af7-4b01-9316-304079ef66e3",
+      "createdTimestamp": 1597402153321,
+      "username": "jason",
+      "enabled": true,
+      "totp": false,
+      "emailVerified": false,
+      "credentials": [
+        {
+          "id": "218ee207-d110-42af-8363-7a46be9896fa",
+          "type": "password",
+          "createdDate": 1597402165990,
+          "secretData": "{\"value\":\"+KIk8ANTahI1HkfkGVgF/ZpDhqZAM8PiL2RZ536mToK2a/nN3kySHyuu+SjRkMstjHdIPNvgkj8yBp/wVyMz7g==\",\"salt\":\"OXCYvfoawvWjyYBWtFak9A==\"}",
+          "credentialData": "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\"}"
+        }
+      ],
+      "disableableCredentialTypes": [],
+      "requiredActions": [],
+      "realmRoles": [
+        "uma_authorization",
+        "user",
+        "offline_access"
+      ],
+      "clientRoles": {
+        "account": [
+          "view-profile",
+          "manage-account"
+        ]
+      },
+      "notBefore": 0,
+      "groups": []
+    },
+    {
+      "id": "f201a83e-ff38-47c5-80c7-c3e2337429f8",
+      "createdTimestamp": 1597402051331,
+      "username": "nebrass",
+      "enabled": true,
+      "totp": false,
+      "emailVerified": false,
+      "credentials": [
+        {
+          "id": "77c9af49-d501-4ae3-9366-1edf57214ca4",
+          "type": "password",
+          "createdDate": 1597402065601,
+          "secretData": "{\"value\":\"iFXZ4VeQ1iTw4Xa7xdxFCbHQzGALiuLbwWmiRFICDEDi4cfQdYbIqa5hKjMLGjFjFZP6pFZ0QXxJYchTPZWmtg==\",\"salt\":\"URRa00EsSukwE8t2QjezRQ==\"}",
+          "credentialData": "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\"}"
+        }
+      ],
+      "disableableCredentialTypes": [],
+      "requiredActions": [],
+      "realmRoles": [
+        "uma_authorization",
+        "user",
+        "admin",
+        "offline_access"
+      ],
+      "clientRoles": {
+        "account": [
+          "view-profile",
+          "manage-account"
+        ]
+      },
+      "notBefore": 0,
+      "groups": []
+    },
+    {
+      "id": "1901f748-869a-417c-954d-bcdac73eabdb",
+      "createdTimestamp": 1597404589037,
+      "username": "service-account-quarkushop",
+      "enabled": true,
+      "totp": false,
+      "emailVerified": false,
+      "serviceAccountClientId": "quarkushop",
+      "credentials": [],
+      "disableableCredentialTypes": [],
+      "requiredActions": [],
+      "realmRoles": [
+        "uma_authorization",
+        "user",
+        "admin",
+        "offline_access"
+      ],
+      "clientRoles": {
+        "quarkushop": [
+          "uma_protection"
+        ],
+        "account": [
+          "view-profile",
+          "manage-account"
+        ]
+      },
+      "notBefore": 0,
+      "groups": []
+    }
+  ]
+}
