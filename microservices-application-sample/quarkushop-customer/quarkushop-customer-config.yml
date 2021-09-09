@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: quarkushop-customer-config
+data:
+  application.properties: |-
+    quarkus.datasource.jdbc.url=jdbc:postgresql://postgres:5432/customer
+    mp.jwt.verify.publickey.location=http://keycloak-http.keycloak/auth/realms/quarkushop-realm/protocol/openid-connect/certs
+    mp.jwt.verify.issuer=http://keycloak-http.keycloak/auth/realms/quarkushop-realm
+    quarkus.log.handler.gelf.enabled=true
+    quarkus.log.handler.gelf.host=quarkushop-logstash
+    quarkus.log.handler.gelf.port=12201
+    quarkus.jaeger.service-name=quarkushop-customer
+    quarkus.jaeger.sampler-type=const
+    quarkus.jaeger.sampler-param=1
+    quarkus.log.console.format=%d{HH:mm:ss} %-5p traceId=%X{traceId}, spanId=%X{spanId}, sampled=%X{sampled} [%c{2.}] (%t) %s%e%n
+    quarkus.jaeger.agent-host-port=jaeger-agent:6831

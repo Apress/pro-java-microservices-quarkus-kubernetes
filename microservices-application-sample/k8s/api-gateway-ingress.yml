@@ -1,0 +1,39 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-gateway
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+    - host: quarkushop.io
+      http:
+        paths:
+          - path: /user
+            pathType: Prefix
+            backend:
+              service:
+                name: quarkushop-user
+                port:
+                  number: 8080
+          - path: /product
+            pathType: Prefix
+            backend:
+              service:
+                name: quarkushop-product
+                port:
+                  number: 8080
+          - path: /order
+            pathType: Prefix
+            backend:
+              service:
+                name: quarkushop-order
+                port:
+                  number: 8080
+          - path: /customer
+            pathType: Prefix
+            backend:
+              service:
+                name: quarkushop-customer
+                port:
+                  number: 8080

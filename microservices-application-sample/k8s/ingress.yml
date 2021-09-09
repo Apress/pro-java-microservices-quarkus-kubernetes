@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: api-gateway-1
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  backend:
+    serviceName: quarkushop-user
+    servicePort: 8080
+  rules:
+    - host: quarkushop.io
+      http:
+        paths:
+          - path: /product
+            backend:
+              serviceName: quarkushop-product.default
+              servicePort: 8080
+          - path: /order
+            backend:
+              serviceName: quarkushop-order.default
+              servicePort: 8080
+          - path: /customer
+            backend:
+              serviceName: quarkushop-customer.default
+              servicePort: 8080
+          - path: /user
+            backend:
+              serviceName: quarkushop-user.default
+              servicePort: 8080

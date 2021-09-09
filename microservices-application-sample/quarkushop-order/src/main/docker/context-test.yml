@@ -1,0 +1,48 @@
+version: '3'
+services:
+  keycloak:
+    image: jboss/keycloak:latest
+    command:
+      [
+          '-b',
+          '0.0.0.0',
+          '-Dkeycloak.migration.action=import',
+          '-Dkeycloak.migration.provider=dir',
+          '-Dkeycloak.migration.dir=/opt/jboss/keycloak/realms',
+          '-Dkeycloak.migration.strategy=OVERWRITE_EXISTING',
+          '-Djboss.socket.binding.port-offset=1000',
+          '-Dkeycloak.profile.feature.upload_scripts=enabled',
+      ]
+    volumes:
+      - ./realms-test:/opt/jboss/keycloak/realms
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - DB_VENDOR=h2
+    ports:
+      - 9080:9080
+      - 9443:9443
+      - 10990:10990
+  quarkushop-product:
+    image: nebrass/quarkushop-product:1.0.0-SNAPSHOT
+    environment:
+      - QUARKUS_PROFILE=test
+      - QUARKUS_DATASOURCE_JDBC_URL=jdbc:postgresql://postgresql-db:5432/product
+      - MP_JWT_VERIFY_PUBLICKEY_LOCATION=http://keycloak:9080/auth/realms/quarkushop-realm/protocol/openid-connect/certs
+      - MP_JWT_VERIFY_ISSUER=http://keycloak:9080/auth/realms/quarkushop-realm
+    depends_on:
+      - postgresql-db
+      - keycloak
+    ports:
+      - 8080:8080
+  postgresql-db:
+    image: postgres:13
+    #volumes:
+    #  - /opt/postgres-volume:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=developer
+      - POSTGRES_PASSWORD=p4SSW0rd
+      - POSTGRES_DB=product
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+      - 5432:5432
